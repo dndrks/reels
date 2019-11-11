@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.5.3/pixi.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi-filters/1.0.8/filters.js"></script>
+    <meta charset="utf-8" />
+    <title>reels</title>
+    <style>
+      * {padding: 0; margin: 0}
+      body {
+        margin:0;
+        padding:0;
+        overflow:hidden;
+        font-family: 'Roboto Mono', monospace;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        justify-content: center;
+        -webkit-box-align: center;
+        -webkit-flex-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        -webkit-flex: 1 1 100%;
+        flex: 1 1;
+        text-align: center;
+        background: black;
+      }
+    </style>
+  </head>
+  <body>
+    <script type="text/javascript">
+        var renderer = new PIXI.WebGLRenderer();
+        renderer.view.style.left = '50%';
+        renderer.view.style.top = '50%';
+        renderer.view.style.transform = 'translate3d( -50%, -50%, 0 )';
+        renderer.view.style.position = "absolute";
+        renderer.view.style.display = "block";
+        renderer.autoResize = true;
+        renderer.resize(window.innerWidth, window.innerWidth);
+        document.body.appendChild(renderer.view);
+        var stage = new PIXI.Container();
+        var reel = new Image();
+        reel.src = 'assets/reel.png';
+        reell = null;
+        reelr = null;
+        reel.onload = function() {
+          var base = new PIXI.BaseTexture(reel);
+          var texture = new PIXI.Texture(base);
+          reell = new PIXI.Sprite(texture);
+          reelr = new PIXI.Sprite(texture);
+          reell.scale.x = reelr.scale.x = 0.6;
+          reell.scale.y = reelr.scale.y = 0.6;
+          reell.anchor.x = reelr.anchor.x = 0.5;
+          reell.anchor.y = reelr.anchor.y = 0.5;
+          reell.x = 510;
+          reelr.x = reell.x + 320;
+          reell.y = reelr.y = 600;
+          stage.addChild(reelr);
+          stage.addChild(reell);
+        }
+        var pixelate = new PIXI.filters.PixelateFilter();
+        pixelate.size = [8, 8];
+        stage.filters = [pixelate];
+        function loop() {
+          requestAnimationFrame(loop);
+          reell.rotation -= 0.01;
+          reelr.rotation -= 0.02;
+          renderer.render(stage);
+        }
+        loop();
+      </script>
+    </body>
+</html>
