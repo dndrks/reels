@@ -33,12 +33,9 @@ var stage = new PIXI.Container();
 app.stage.addChild(stage);
 PIXI.Loader.shared.add("reel", "assets/reel.png").load(onLoad);
 function onLoad() {
-  console.log("Done loading resources!");
   document.body.appendChild(app.view);
-
   const reel_l = PIXI.Sprite.from("reel");
   const reel_r = PIXI.Sprite.from("reel");
-
   reel_l.scale.set(0.5);
   reel_r.scale.set(0.5);
   reel_l.anchor.set(0.5);
