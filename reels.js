@@ -11,8 +11,8 @@ var app = new PIXI.Application({
 
 function resize(app) {
   return function() {
-    const vpw = window.innerWidth;
-    const vph = window.innerHeight;
+    const vpw = document.documentElement.clientWidth ? document.documentElement.clientWidth  : window.innerWidth;
+    const vph = document.documentElement.clientHeight ? document.documentElement.clientHeight : window.innerHeight;
     let nvw;
     let nvh;
     if (vph / vpw < HEIGHT / WIDTH) {
@@ -54,7 +54,7 @@ function onLoad() {
   let count = 0;
 
   var pixelate = new PIXI.filters.PixelateFilter();
-  pixelate.size = [8, 8];
+  pixelate.size = [6, 6];
   app.stage.filters = [pixelate];
 
 
