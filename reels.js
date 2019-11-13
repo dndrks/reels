@@ -33,7 +33,7 @@ resize(app)();
 window.addEventListener("resize", resize(app));
 var stage = new PIXI.Container();
 var tape = new PIXI.Container();
-
+var ssss = 300;
 app.stage.addChild(stage);
 PIXI.Loader.shared.add("reel", "assets/reel.png").load(onLoad);
 function onLoad() {
@@ -69,19 +69,13 @@ function onLoad() {
   
   // tape 
   graphics.lineStyle(5, 0xFFFFFF, 1);
-  graphics.moveTo(220, 290);
+  graphics.moveTo(215, 290);
   graphics.lineTo(301, 360);
   graphics.lineTo(315, 360);
-  graphics.lineTo(301, 360);
-  graphics.lineTo(475, 360);
+  graphics.lineTo(305, 360);
+  graphics.quadraticCurveTo(380, 360, 474, 360);
+  //graphics.lineTo(475, 360);
   graphics.lineTo(560, 290);
-
-
-  //  graphics.lineTo(570, 350);
-  //    graphics.quadraticCurveTo(600, 0, 480, 100);
-  //    graphics.lineTo(330, 120);
-  //    graphics.lineTo(410, 200);
-  //    graphics.lineTo(210, 300);
   graphics.beginFill(0x535353);
   graphics.lineStyle(0);
   graphics.drawCircle(305, 350, 10, 10);
