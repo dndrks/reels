@@ -36,8 +36,6 @@ function onLoad() {
   document.body.appendChild(app.view);
   const reel_l = PIXI.Sprite.from("reel");
   const reel_r = PIXI.Sprite.from("reel");
-  reel_l.scale.set(0.5);
-  reel_r.scale.set(0.5);
   reel_l.anchor.set(0.5);
   reel_r.anchor.set(0.5);
 
@@ -58,7 +56,7 @@ function onLoad() {
   app.ticker.add(() => {
       count += 0.1;
       reel_l.rotation = count * -0.1;
-      reel_r.rotation = count * -0.2;
+      reel_r.rotation = count * -0.14;
   });
 
 }
