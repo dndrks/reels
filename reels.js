@@ -3,6 +3,8 @@
 var WIDTH = 800;
 var HEIGHT = 600;
 
+var pixelate = new PIXI.filters.PixelateFilter();
+
 var app = new PIXI.Application({
   width: WIDTH,
   height: HEIGHT
@@ -11,12 +13,14 @@ var app = new PIXI.Application({
 function mount() {
   tape.visible = !tape.visible;
 }
+
 function resize(app) {
   return function() {
     const vpw = document.documentElement.clientWidth ? document.documentElement.clientWidth  : window.innerWidth;
     const vph = document.documentElement.clientHeight ? document.documentElement.clientHeight : window.innerHeight;
     let nvw;
     let nvh;
+    if (vpw < 900) {  pixelate.size = [4,4]; } else { pixelate.size = [6,6]; };
     if (vph / vpw < HEIGHT / WIDTH) {
       nvh = vph;
       nvw = (nvh * WIDTH) / HEIGHT;
@@ -91,15 +95,9 @@ function onLoad() {
 
   let count = 0;
 
-  var pixelate = new PIXI.filters.PixelateFilter();
-  pixelate.size = [6, 6];
   app.stage.filters = [pixelate];
-  
   stage.interactive = true;
-
-  // Shows hand cursor
-  stage.buttonMode = true;
-
+  //stage.buttonMode = true;
   stage.on('pointerdown', mount);
 
 
